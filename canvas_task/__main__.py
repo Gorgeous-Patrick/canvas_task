@@ -1,3 +1,4 @@
+import canvas_task
 from datetime import datetime
 from json import load
 from typing import List
@@ -16,11 +17,16 @@ def refresh_data():
             os.mkdir(config.data_folder)
         open(config.data_folder+'paper_submitted.json','w').write('[]')
     sess=createSess(params={"access_token": config.token})
-    write_info(fetch_course(sess))
+    try:
+        write_info(fetch_course(sess))
+    except Exception:
+        print('Access failed, trying again.')
+        refresh_data()
 
-@app.command('help')
-def help():
-    print('help')
+@app.command('update')
+def update():
+    refresh_data()
+    read_data()
 
 @app.command('read')
 def read_data():
