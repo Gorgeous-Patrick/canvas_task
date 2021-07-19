@@ -1,18 +1,25 @@
+# Canvas Task
+
+Fetch your undone assignments and tasks with ease.
+
 ## Getting Started
-
-### Setup venv (Optional)
-
-```bash
-python3 -m venv env
-source env/Scripts/activate
-```
 
 ### Install
 
 ```bash
 pip3 install -e .
+```
+
+### Configuration
+
+```bash
 vi canvas_task/config.py
-vi canvas_task/token.py # configure environment
+vi canvas_task/token.py
+```
+
+### Usage
+
+```bash
 canvas-task
 ```
 
