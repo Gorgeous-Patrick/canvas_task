@@ -80,5 +80,5 @@ def fetch_course(sess):
 
 def write_info(course_info):
     with open(config.data_folder+'data.json','w') as file:
-        dump(course_info, file)
+        dump({'info':course_info, 'refreshed_at':time.time()}, file)
 

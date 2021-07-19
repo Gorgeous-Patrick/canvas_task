@@ -2,9 +2,10 @@ import pprint
 import time
 
 def display(data):
-    flattened=create_assignment_list(data)
+    refreshed_time=data['refreshed_at']
+    flattened=create_assignment_list(data['info'])
     flattened.sort(key=cmptime)
-    print('Notification:\n')
+    print('Notification (Refreshed at %s):\n'%(time.asctime(time.localtime(refreshed_time))))
     for assi in flattened:
         print_assi(assi)
 
@@ -29,7 +30,7 @@ def get_time_left(assi):
     return ('Time Left:\t%d Days, %d Hours, %d Minute, %d Seconds' % (day, hour, min, sec))
 
 def get_title(assi):
-    return assi['course_code']+':\t'+assi['name']
+    return assi['course_code']+':\t\t'+assi['name']
 
 def print_assi(assi):
     print(get_title(assi))
