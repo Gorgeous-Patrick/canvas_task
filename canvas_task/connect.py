@@ -3,6 +3,7 @@ import canvas_task.config as config
 import requests
 import pprint
 import time
+import os
 api_url=config.base_url+"api/v1/"
 def createSess(params):
     s = requests.Session()
@@ -20,7 +21,7 @@ def get_course_list(sess):
     return course_res
 
 def check_handsub():
-    with open('paper_submitted.json','r') as source:
+    with open(config.data_folder+'paper_submitted.json','r') as source:
         return load(source)
 
 def add_handsub(assignment:int):
@@ -78,6 +79,6 @@ def fetch_course(sess):
     return l_filter(filter_course,course_list)
 
 def write_info(course_info):
-    with open('data.json','w') as file:
+    with open(config.data_folder+'data.json','w') as file:
         dump(course_info, file)
 

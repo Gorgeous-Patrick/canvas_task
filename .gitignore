@@ -300,3 +300,4 @@ repos/
 .pre-commit-config.yaml
 *.json
 token.txt
+token.py

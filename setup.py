@@ -1,6 +1,9 @@
+from json import dump
 import os
 import re
 from typing import List
+from canvas_task.config import data_folder
+from shutil import rmtree
 
 from setuptools import find_packages, setup
 
@@ -19,7 +22,7 @@ def get_install_requires() -> List[str]:
 setup(
     name="canvas-task",
     version="v0.0.1",
-    url="",
+    url="https://github.com/Gorgeous-Patrick/canvas_task.git",
     license="MIT",
     description="A handy tool to download the assignments from Canvas",
     long_description=get_long_description(),
@@ -30,6 +33,6 @@ setup(
     maintainer_email="patrickli@sjtu.edu.cn",
     packages=find_packages(),
     python_requires=">=3.6",
-    entry_points={"console_scripts": ["joint-teapot=canvas_task:main"]},
+    entry_points={"console_scripts": ["canvas-task=canvas_task:main"]},
     install_requires=get_install_requires(),
 )
