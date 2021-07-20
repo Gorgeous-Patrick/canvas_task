@@ -41,7 +41,7 @@ def get_assignment_list(id:int, sess):
             'submitted': assi.get('submission') is not None,
             'url':assi['html_url']
         })
-        print(assi['name'])
+        # print(assi['name'])
     return assi_res
 
 def filter_assignment(assi):
