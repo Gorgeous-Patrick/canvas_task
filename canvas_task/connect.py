@@ -30,7 +30,7 @@ def add_handsub(assignment:int):
     with open('paper_submitted.json','w') as source:
         return dump(data,source)
 def get_assignment_list(id:int, sess):
-    info=sess.get(api_url+"courses/%d/assignments?include[]=submission"% id).json()
+    info=sess.get(api_url+"courses/%d/assignments?include[]=submission&per_page=1000"% id).json()
     assi_res=[]
     for assi in info:
         assi_res.append({
@@ -41,6 +41,7 @@ def get_assignment_list(id:int, sess):
             'submitted': assi.get('submission') is not None,
             'url':assi['html_url']
         })
+        print(assi['name'])
     return assi_res
 
 def filter_assignment(assi):
@@ -51,7 +52,7 @@ def filter_assignment(assi):
         return False
     if (assi['due'] is None):
         return False
-    sub_time=time.mktime(time.strptime(assi['due'], '%Y-%m-%dT%H:%M:%SZ'))
+    sub_time=time.mktime(time.strptime(assi['due'], '%Y-%m-%dT%H:%M:%SZ'))+ 8* 60 *60
     now=time.time()
     if (now>=sub_time):
         return False

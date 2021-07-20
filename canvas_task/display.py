@@ -17,7 +17,7 @@ def create_assignment_list(data):
     for course in data:
         for assi in course['assignments']:
             assi['course_code']=course['code']
-            assi['time_left']=time.mktime(time.strptime(assi['due'], '%Y-%m-%dT%H:%M:%SZ'))- time.time()
+            assi['time_left']=time.mktime(time.strptime(assi['due'], '%Y-%m-%dT%H:%M:%SZ'))- time.time()+8*60*60
             res.append(assi)
     return res
 
@@ -32,9 +32,14 @@ def get_time_left(assi):
 def get_title(assi):
     return assi['course_code']+':\t\t'+assi['name']
 
+def get_due_time(assi):
+    t=time.mktime(time.strptime(assi['due'], '%Y-%m-%dT%H:%M:%SZ'))+ 8* 60 *60
+    return time.asctime(time.localtime(t))
+
 def print_assi(assi):
     print(get_title(assi))
-    print('Due:\t\t', assi['due'])
+    print('Due:\t\t', get_due_time(assi))
+    print('ID:\t\t', assi['assignment_id'])
     print(get_time_left(assi))
     print('URL:\t\t', assi['url'])
     print("")
