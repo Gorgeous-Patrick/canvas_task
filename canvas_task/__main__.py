@@ -1,17 +1,14 @@
-import canvas_task
 from datetime import datetime
 from json import load
-from typing import List
 
-from typer import Typer, echo
-from canvas_task import connect
-from .display import display
-app = Typer(add_completion=False)
-from .connect import createSess, write_info, fetch_course
-import canvas_task.config as config
+import connect
+from display import display
+from connect import createSess, write_info, fetch_course
+import config
 import os
 import time
-@app.command('refresh')
+import sys
+
 def refresh_data():
     if not os.path.isfile(config.data_folder+'paper_submitted.json'):
         if not os.path.isdir(config.data_folder):
@@ -25,16 +22,25 @@ def refresh_data():
         time.sleep(10)
         refresh_data()
 
-@app.command('update')
+
 def update():
     refresh_data()
     read_data()
 
-@app.command('read')
+
 def read_data():
     with open(config.data_folder+'data.json','r') as file:
         display(load(file))
 
-@app.command('ignore')
+
 def ignore_assi(assi_id:int):
     connect.add_handsub
+
+if __name__ == '__main__':
+
+    if sys.argv[1]=='read':
+        read_data()
+    elif sys.argv[1]=='update':
+        refresh_data()
+    else:
+        print('Invalid Command.')

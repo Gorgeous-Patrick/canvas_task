@@ -1,9 +1,8 @@
 from json import dump, load
-import canvas_task.config as config
+import config
 import requests
-import pprint
 import time
-import os
+
 api_url=config.base_url+"api/v1/"
 def createSess(params):
     s = requests.Session()
