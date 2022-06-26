@@ -1,8 +1,6 @@
 from json import dump
 import os
 import re
-from typing import List
-from canvas_task.config import data_folder
 from shutil import rmtree
 
 from setuptools import find_packages, setup
@@ -15,7 +13,7 @@ def get_long_description() -> str:
     return open("README.md", "r", encoding="utf8").read()
 
 
-def get_install_requires() -> List[str]:
+def get_install_requires():
     return open("requirements.txt").read().splitlines()
 
 

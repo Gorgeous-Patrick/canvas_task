@@ -5,9 +5,9 @@ from typing import List
 
 from typer import Typer, echo
 from canvas_task import connect
-from canvas_task.display import display
+from .display import display
 app = Typer(add_completion=False)
-from canvas_task.connect import createSess, write_info, fetch_course
+from .connect import createSess, write_info, fetch_course
 import canvas_task.config as config
 import os
 import time
