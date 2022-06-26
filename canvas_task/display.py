@@ -1,4 +1,3 @@
-import pprint
 import time
 
 def display(data):
